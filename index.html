@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <style>
+        canvas#canvas {
+            border: 1px solid gray;
+        }
+    </style>
+    <script>
+        class Cell {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.walls = {
+                    top: true,
+                    right: true,
+                    bottom: true,
+                    left: true,
+                };
+            }
+
+            draw(ctx, cellWidth) {
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+
+                const px = this.x * cellWidth;
+                const py = this.y * cellWidth;
+                ctx.moveTo(px, py);
+                ctx.lineTo(px, py + cellWidth);
+                ctx.lineTo(px + cellWidth, py + cellWidth);
+                ctx.lineTo(px + cellWidth, py);               
+                ctx.lineTo(px, py);               
+                ctx.stroke();
+            }
+        }
+
+        class Maze {
+            constructor(cols, rows, canvas) {
+                this.grid = [];
+                this.cols = cols;
+                this.rows = rows;
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.cellWidth = canvas.width / cols;
+                this.initializeGrid();
+            }
+
+            initializeGrid() {
+                for (let i = 0; i < this.rows; i += 1) {
+                    this.grid.push([]);
+                    for (let j = 0; j < this.cols; j += 1) {
+                        this.grid[i].push(new Cell(i, j));
+                    }
+                }
+            }
+
+            draw() {
+                for (let i = 0; i < this.rows; i += 1) {
+                    for (let j = 0; j < this.cols; j += 1) {
+                        this.grid[i][j].draw(this.ctx, this.cellWidth);
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('canvas');
+            const maze = new Maze(10, 10, canvas);
+            // const ctx = canvas.getContext('2d');
+            // ctx.fillStyle = '#ff0000';
+            // ctx.fillRect(50, 50, 100, 100);
+
+            // let startCell = maze.grid[7][5];
+            // startCell.draw(maze.ctx, maze.cellWidth);
+            maze.draw();
+            
+            console.log(maze);
+        })
+    </script>
+</body>
+</html>
