@@ -1,46 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maze Generator with Speed Control + Reset</title>
-  <style>
-    canvas#canvas {
-      border: 1px solid gray;
-      display: block;
-      margin-bottom: 10px;
-    }
-    label, button {
-      font-family: sans-serif;
-      margin-top: 5px;
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="canvas" width="800" height="800"></canvas>
-  
-  <label>
-    Speed: <span id="speedValue">100</span> ms/step
-    <input type="range" id="speedSlider" min="10" max="500" value="100" step="10">
-  </label>
-  
-  <button id="resetButton">Reset Maze</button>
-  <script src="maze.js"></script>
-=======
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze Generator</title>
-</head>
-<body>
-    <canvas id="canvas" width="800" height="800"></canvas>
+    <title>Maze Generator with Speed Control + Reset</title>
+
     <style>
         canvas#canvas {
             border: 1px solid gray;
+            display: block;
+            margin-bottom: 10px;
+        }
+        label, button {
+            font-family: sans-serif;
+            margin-top: 5px;
+            display: block;
         }
     </style>
-    <script src="maze.js"></script>
->>>>>>> 7588da7928e9238894277a51d89637b560777ecc
+</head>
+
+<body>
+<canvas id="canvas" width="800" height="800"></canvas>
+
+<label>
+    Speed: <span id="speedValue">100</span> ms/step
+    <input type="range" id="speedSlider" min="10" max="500" value="100" step="10">
+</label>
+
+<button id="resetButton">Reset Maze</button>
+
+<!-- Load the JS file ONCE -->
+<script src="maze.js"></script>
 </body>
 </html>
